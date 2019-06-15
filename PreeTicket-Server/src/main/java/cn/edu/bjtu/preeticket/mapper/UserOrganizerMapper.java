@@ -19,9 +19,9 @@ public interface UserOrganizerMapper {
     @Select("select * from user_organizer")
     List<UserOrganizer> getUsers();
 
-    @Select({"select password from user_organizer where username = #{username}"})
+    @Select({"select password from user_organizer where username=#{username}"})
     String getPwdByUsername(@Param("username") String username);
 
-    @Select({"select * from user_organizer where username = #{username}"})
+    @Select({"select * from user_organizer where username=#{username}"})
     UserOrganizer getUserByUsername(@Param("username") String username);
 }

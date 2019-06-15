@@ -17,4 +17,21 @@ public class ActivityServiceImpl implements ActivityService {
     public List<Activity> getActivities(){
         return activityMapper.getActivities();
     }
+
+    @Override
+    public List<Activity> getActivities(int id) {
+        return activityMapper.getActivities(id);
+    }
+
+    @Override
+    public int addActivity(Activity activity) {
+        activityMapper.addActivity(activity);
+        return 1;
+    }
+
+    @Override
+    public int updateActivity(Activity activity) {
+        activityMapper.updateActivity(activity);
+        return 1;
+    }
 }
