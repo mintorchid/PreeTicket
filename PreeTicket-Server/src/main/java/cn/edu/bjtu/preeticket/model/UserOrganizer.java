@@ -6,15 +6,17 @@ public class UserOrganizer implements Serializable {
     private int id_organizer;
     private String username;
     private String password;
-    private String tel;
+    private String organize;
+    private String tel_num;
     private String email;
+    private String introduce;
 
-    public int getId() {
+    public int getId_organizer() {
         return id_organizer;
     }
 
-    public void setId(int id) {
-        this.id_organizer = id;
+    public void setId_organizer(int id_organizer) {
+        this.id_organizer = id_organizer;
     }
 
     public String getUsername() {
@@ -33,12 +35,20 @@ public class UserOrganizer implements Serializable {
         this.password = password;
     }
 
-    public String getTel() {
-        return tel;
+    public String getOrganize() {
+        return organize;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setOrganize(String organize) {
+        this.organize = organize;
+    }
+
+    public String getTel_num() {
+        return tel_num;
+    }
+
+    public void setTel_num(String tel_num) {
+        this.tel_num = tel_num;
     }
 
     public String getEmail() {
@@ -49,14 +59,24 @@ public class UserOrganizer implements Serializable {
         this.email = email;
     }
 
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
     @Override
     public String toString() {
         return "UserOrganizer{" +
-                "id=" + id_organizer +
+                "id_organizer=" + id_organizer +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", tel='" + tel + '\'' +
+                ", organize='" + organize + '\'' +
+                ", tel_num='" + tel_num + '\'' +
                 ", email='" + email + '\'' +
+                ", introduce='" + introduce + '\'' +
                 '}';
     }
 }
