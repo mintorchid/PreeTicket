@@ -19,7 +19,7 @@
     font-size: 35px;
   }
   .activity-item{
-    width: 50%;
+    width: 60%;
     border: #79bbff 1px solid;
     border-radius: 6px;
     margin: 0 auto 5px auto;

@@ -5,14 +5,14 @@
     </a>
     <div class="items_txt">
       <div class="activity-title">
-        <h1>{{ title }}</h1>
+        <h1>{{ name }}</h1>
       </div>
       <div class="activity-title-line"></div>
       <div class="activity-title-line2"></div>
       <div class="activity-info">
-        <p><i class="el-icon-alarm-clock" style="color: #1a77ce"></i> {{ time }}</p>
-        <p><i class="el-icon-map-location" style="color: #1a77ce"></i> {{ location }}</p>
-        <p><i class="el-icon-star-on" style="color: #1a77ce"></i> {{ status }}</p>
+          <p>报名时间：<i class="el-icon-alarm-clock" style="color: #1a77ce"></i>{{ time_signup }}</p>
+          <p>活动时间：<i class="el-icon-alarm-clock" style="color: #1a77ce"></i>{{ time_start }}</p>
+        <p>举办地点：<i class="el-icon-map-location" style="color: #1a77ce"></i> {{ place }}</p>
       </div>
       <div class="activity-detail">
         <p>{{detail}}</p>
@@ -32,12 +32,30 @@
       </div>
     </div>
     <el-dialog
-      title="Log in"
+      :title="name"
       width="450px"
       :visible.sync="act_dialog"
       center
       append-to-body>
       <el-form label-width="100px" ref="act_info_form" :model="act_info_form">
+          <el-form-item label="活动名称" prop="name">
+              <el-input v-model="act_info_form.name"></el-input>
+          </el-form-item>
+          <el-form-item label="活动地点" prop="place">
+              <el-input v-model="act_info_form.place"></el-input>
+          </el-form-item>
+          <el-form-item label="活动报名时间" prop="time_signup">
+              <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_signup"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="活动开始时间" prop="time_start">
+              <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_start"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="活动最大人数" prop="capacity">
+              <el-input v-model="act_info_form.capacity"></el-input>
+          </el-form-item>
+          <el-form-item label="活动细节" prop="detail">
+              <el-input v-model="act_info_form.detail"></el-input>
+          </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
       <el-button type="primary" @click="submitChange" plain>提交修改</el-button>
@@ -51,12 +69,14 @@
     export default {
         name: "Activity",
       props: {
-        id: Number,
-        status: Boolean,
-        title: String,
-        time: String,
-        location:String,
-        detail:String,
+          id: Number,
+          status: Boolean,
+          name: String,
+          place:String,
+          time_signup: String,
+          time_start: String,
+          capacity: Number,
+            detail:String,
         notice:Array,
       },
       data(){
@@ -64,10 +84,12 @@
             act_dialog: false,
             act_info_form:{
               id: this.id,
-              status: this.status,
-              title: this.title,
-              time: this.time,
-              location: this.location,
+                status: this.status,
+                name: this.name,
+                place: this.place,
+                time_signup: this.time_signup,
+                time_start: this.time_start,
+                capacity: this.capacity,
               detail: this.detail,
               notice: this.notice,
             }
@@ -87,7 +109,7 @@
 
 <style scoped>
   .activity-item{
-    width: 50%;
+    width: 60%;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border-bottom: #409eff 1px dotted;
