@@ -130,7 +130,7 @@
                 console.log("wedawdawd");
             },
             signUpAct(){
-                // todo
+                //yaozuo
                 this.seat_dialog = true;
             },
             chooseSeat(m,n){

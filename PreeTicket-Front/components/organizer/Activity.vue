@@ -160,10 +160,10 @@
                 this.act_dialog = true;
             },
             submitChange(){
-                // todo
+                // yaozuo
             },
             newNotice(){
-                // todo
+                // yaozuo
             },
             changeSeatStat(m,n){
                 if(this.seats[m-1][n-1] === 2){
@@ -176,7 +176,7 @@
                 console.log(m,n);
             },
             submitSeats(){
-                // todo
+                // yaozuo
             }
         }
     }

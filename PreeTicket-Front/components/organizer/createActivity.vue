@@ -72,7 +72,7 @@
                 this.act_dialog=true;
             },
             createAct(){
-                // todo
+                // yaozuo
                 this.act_dialog = false
             }
         }
