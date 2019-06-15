@@ -1,10 +1,10 @@
 <template>
   <div style="width: 100%;background-color: #F1F1F1">
-    <div style="width: 100%;height: 120px;margin-bottom: 20px;border-bottom: #606266 2px solid">
+    <div style="width: 100%;height: 70px;margin-bottom: 20px;border-bottom: #606266 2px solid">
 
     </div>
     <div id="organizer-main">
-      <div style="height: 400px;position: fixed;top:150px;right:15%">
+      <div style="height: 400px;position: fixed;top:150px;left:5%">
         <el-steps direction="vertical" :active="1">
           <el-step title="未开始的活动"></el-step>
           <el-step title="已开始的活动"></el-step>
@@ -66,6 +66,10 @@
 </script>
 
 <style scoped>
+  html body{
+
+    min-width: 1000px;
+  }
   #organizer-main{
     padding: 0 120px;
   }

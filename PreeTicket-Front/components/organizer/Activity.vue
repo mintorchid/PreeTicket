@@ -10,8 +10,8 @@
             <div class="activity-title-line"></div>
             <div class="activity-title-line2"></div>
             <div class="activity-info">
-                <p>报名时间：<i class="el-icon-alarm-clock" style="color: #1a77ce"></i>{{ time_signup }}</p>
-                <p>活动时间：<i class="el-icon-alarm-clock" style="color: #1a77ce"></i>{{ time_start }}</p>
+                <p>报名时间：<i class="el-icon-time" style="color: #1a77ce"></i>{{ time_signup }}</p>
+                <p>活动时间：<i class="el-icon-time" style="color: #1a77ce"></i>{{ time_start }}</p>
                 <p>举办地点：<i class="el-icon-map-location" style="color: #1a77ce"></i> {{ place }}</p>
             </div>
             <div class="activity-detail">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="div_seat_map" style="padding: 30px;">
                     <div class="div_seat_row" style="font-size: 30px;display: flex" v-for="m in seat_row" :key="m">
-                        <div class="div_seat_col" v-for="n in seat_col" :key="n" onclick="changeSeatStat(m,n)">
+                        <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="changeSeatStat(m,n)">
                             <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)]===2?'#ff3333':'#999999'}"></i>
                         </div>
                     </div>
@@ -116,6 +116,7 @@
 </template>
 
 <script>
+    import $ from 'jquery'
     export default {
         name: "Activity",
         props: {
@@ -165,7 +166,14 @@
                 // todo
             },
             changeSeatStat(m,n){
-                // todo
+                if(this.seats[m-1][n-1] === 2){
+                    this.seats[m-1][n-1] = 0;
+                    $(".div_seat_row:eq("+ (m-1) + ")>.div_seat_col:eq("+ (n-1) +")>i").css("color","#999999");
+                }else {
+                    this.seats[m-1][n-1] = 2;
+                    $(".div_seat_row:eq("+ (m-1) + ")>.div_seat_col:eq("+ (n-1) +")>i").css("color","#ff3333");
+                }
+                console.log(m,n);
             },
             submitSeats(){
                 // todo
