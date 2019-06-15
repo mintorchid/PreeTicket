@@ -11,25 +11,31 @@ import java.util.List;
 @Service
 public class UserNormalServiceImpl implements UserNormalService {
     @Autowired
-    private UserNormalMapper userNormalService;
+    private UserNormalMapper userNormalMapper;
 
     @Override
-    public void addUser(UserNormal userNormal) {
-        userNormalService.addUserNormal(userNormal);
+    public int addUser(UserNormal userNormal) {
+        userNormalMapper.addUserNormal(userNormal);
+        return 1;
     }
 
     @Override
     public List<UserNormal> getUsers() {
-        return userNormalService.getUsers();
+        return userNormalMapper.getUsers();
     }
 
     @Override
     public int checkPwd(UserNormal userNormal) {
-        String realPassword = userNormalService.getPwdByUsername(userNormal.getUsername());
+        String realPassword = userNormalMapper.getPwdByUsername(userNormal.getUsername());
         if (realPassword.equals(userNormal.getPassword())) {
             return 1;
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public UserNormal getUserByUsername(String username){
+        return userNormalMapper.getUserByUsername(username);
     }
 }

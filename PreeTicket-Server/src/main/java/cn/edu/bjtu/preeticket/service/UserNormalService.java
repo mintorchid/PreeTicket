@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface UserNormalService {
 
-    void addUser(UserNormal userNormal);
+    int addUser(UserNormal userNormal);
 
     int checkPwd(UserNormal userNormal);
+
+    UserNormal getUserByUsername(String username);
 
     List<UserNormal> getUsers();
 }

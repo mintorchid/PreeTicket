@@ -5,18 +5,17 @@ import cn.edu.bjtu.preeticket.service.UserNormalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class UserNormalController {
     @Autowired
     private UserNormalService userNormalService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<UserNormal> getUsers() {
-        return userNormalService.getUsers();
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public UserNormal getUserByUsername(@RequestParam("username") String username) {
+        return userNormalService.getUserByUsername(username);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -25,7 +24,7 @@ public class UserNormalController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void addUser(UserNormal userNormal) {
-        userNormalService.addUser(userNormal);
+    public int addUser(UserNormal userNormal) {
+        return userNormalService.addUser(userNormal);
     }
 }

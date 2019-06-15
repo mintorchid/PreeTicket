@@ -1,4 +1,9 @@
 package cn.edu.bjtu.preeticket.service.impl;
 
-public class UserOrganizerServiceImpl {
+import cn.edu.bjtu.preeticket.service.UserOrganizerService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserOrganizerServiceImpl implements UserOrganizerService {
+
 }

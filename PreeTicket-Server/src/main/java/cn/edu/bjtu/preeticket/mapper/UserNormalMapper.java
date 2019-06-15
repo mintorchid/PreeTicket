@@ -16,4 +16,7 @@ public interface UserNormalMapper {
 
     @Select({"select password from user_normal where username = #{username}"})
     String getPwdByUsername(@Param("username") String username);
+
+    @Select({"select * from user_normal where username = #{username}"})
+    UserNormal getUserByUsername(@Param("username") String username);
 }
