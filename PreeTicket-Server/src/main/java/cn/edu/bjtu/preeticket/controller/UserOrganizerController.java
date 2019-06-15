@@ -14,17 +14,17 @@ public class UserOrganizerController {
     @Autowired
     private UserOrganizerService userOrganizerService;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/org_index", method = RequestMethod.GET)
     public UserOrganizer getUserByUsername(@RequestParam("username") String username) {
         return userOrganizerService.getUserByUsername(username);
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/org_login", method = RequestMethod.POST)
     public int checkPwd(UserOrganizer userOrganizer) {
         return userOrganizerService.checkPwd(userOrganizer);
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/org_register", method = RequestMethod.POST)
     public int addUser(UserOrganizer userOrganizer) {
         return userOrganizerService.addUser(userOrganizer);
     }
