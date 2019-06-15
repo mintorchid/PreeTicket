@@ -2,6 +2,7 @@ html body {
   width: 100%;
   margin: 0;
   padding: 0;
+  min-width: 1000px;
 }
 blockquote, body, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, td, textarea, th, ul {
   margin: 0;
