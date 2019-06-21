@@ -1,6 +1,5 @@
 package cn.edu.bjtu.preeticket.controller;
 
-import cn.edu.bjtu.preeticket.model.UserNormal;
 import cn.edu.bjtu.preeticket.service.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,8 +4,6 @@ import cn.edu.bjtu.preeticket.mapper.TicketMapper;
 import cn.edu.bjtu.preeticket.model.Ticket;
 import cn.edu.bjtu.preeticket.service.TicketService;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
