@@ -19,5 +19,5 @@ public interface TicketMapper {
     void setSeatMap(@Param("seat_map") String seat_map, Ticket ticket);
 
     @Select({"select seat from ticket where id_activity=#{id_activity} and id_user=#{id_user}"})
-    List<Integer> getTicket(@Param("id_activity") int id_activity, @Param("id_user") int id_user);
+    Integer getTicket(@Param("id_activity") int id_activity, @Param("id_user") int id_user);
 }

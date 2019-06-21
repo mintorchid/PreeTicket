@@ -30,9 +30,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public int getTicket(int actid, int userid) {
-        List<Integer> list = ticketMapper.getTicket(actid, userid);
-        if (list.size() == 1) {
-            return list.get(0).intValue();
+        Integer res = ticketMapper.getTicket(actid, userid);
+        if (res != null) {
+            return res.intValue();
         } else {
             return -1;
         }
