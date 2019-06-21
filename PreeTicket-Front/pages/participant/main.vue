@@ -24,6 +24,7 @@
 <script>
     import Activity from '~/components/participant/Activity.vue'
     import Cookies from "js-cookie"
+    import API from "../../api";
     export default {
         name: "main.vue",
         components:{
@@ -57,11 +58,19 @@
                 ],
             }
         },
+      mounted(){
+        this.loadActList();
+      },
       methods:{
           ToTop(){
             location.href='#';
-          }
-      }
+          },
+        loadActList(){
+          API.participantActList({}).then(res=>{
+            // todo
+          });
+        }
+      },
     }
 </script>
 

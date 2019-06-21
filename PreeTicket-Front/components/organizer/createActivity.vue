@@ -48,6 +48,7 @@
 
 <script>
   import Cookies from "js-cookie"
+  import API from "~/api";
     export default {
         name: "createActivity",
         data(){
@@ -60,23 +61,30 @@
                     name: "",
                     time_signup: null,
                     time_start: null,
-                    capacity: 0,
+                    capacity: 9,
                     detail: "",
                     notice: [],
-                    seat_row: 0,
-                    seat_col: 0,
-                    seats: [],
+                    seat_row: 3,
+                    seat_col: 3,
                 },
             }
         },
+      mounted(){
+
+      },
         methods:{
             showAct(){
                 this.act_dialog=true;
             },
             createAct(){
-                // yaozuo
+              API.organizerAddAct({
+                id:this.user_id,
+                act:this.act_info_form,
+              }).then(res=>{
+                // todo
                 this.act_dialog = false
-            }
+              });
+            },
         }
     }
 </script>

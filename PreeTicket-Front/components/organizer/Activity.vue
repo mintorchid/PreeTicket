@@ -117,6 +117,7 @@
 
 <script>
     import $ from 'jquery'
+    import API from "~/api";
     import Cookies from "js-cookie"
     export default {
         name: "Activity",
@@ -164,10 +165,17 @@
                 this.act_dialog = true;
             },
             submitChange(){
-                // yaozuo
+              API.organizerModifyAct(this.act_info_form).then(res=>{
+                // todo
+              });
             },
             newNotice(){
-                // yaozuo
+              API.organizerAddNotice({
+                act_id:this.act_info_form.id,
+                content:this.act_new_notice,
+              }).then(res=>{
+                // todo
+              });
             },
             changeSeatStat(m,n){
                 if(this.seats[m-1][n-1].stat===2){

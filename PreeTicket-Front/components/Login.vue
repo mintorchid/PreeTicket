@@ -104,17 +104,19 @@
           userLogin(){
             let data = this.login_form;
             API.userLoginApi(data).then(res=>{
-              if(res.type == 1){
+              if(res.data.type == 1){
                 this.$router.push({path: `/participant/main`});
-              }else if(res.type == 2){
+                Cookies.set('userid', res.data.id);
+                Cookies.set('username', res.data.username);
+                Cookies.set('nickname', res.data.nickname);
+              }else if(res.data.type == 2){
                 this.$router.push({path: `/organizer/main`});
+                Cookies.set('userid', res.data.id);
+                Cookies.set('username', res.data.username);
+                Cookies.set('nickname', res.data.organize);
               }else{
                 this.$message.error('登陆失败，请检查你的用户名和密码');
-                return;
               }
-              Cookies.set('userid', res.id);
-              Cookies.set('username', res.username);
-              Cookies.set('nickname', res.nickname);
             });
           },
         UserReg(){
