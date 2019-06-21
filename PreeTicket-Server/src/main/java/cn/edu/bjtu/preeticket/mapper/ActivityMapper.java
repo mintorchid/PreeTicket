@@ -20,6 +20,9 @@ public interface ActivityMapper {
     @Select({"select * from activity where id_organizer=#{id}"})
     List<Activity> getActivitiesById(@Param("id") int id);
 
+    @Select({"select * from activity where id_activity=#{id}"})
+    Activity getActivity(@Param("id") int id);
+
     @Insert("insert into activity(id_organizer, name, place, time_signup, time_start, capacity, detail, seat_seletable, seat_row, seat_col, seat_map) values (#{id_organizer}, #{name}, #{place}, #{time_signup}, #{time_start}, #{capacity}, #{detail}, #{seat_seletable}, #{seat_row}, #{seat_col}, #{seat_map})")
     @Options(useGeneratedKeys = true, keyProperty = "id_activity", keyColumn = "id_activity")
     void addActivity(Activity activity);
