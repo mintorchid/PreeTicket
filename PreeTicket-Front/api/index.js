@@ -37,6 +37,7 @@ for (var api in APICONFIG) {
         console.log(config)
 
         axios(config).then((res) => {
+          axios.defaults.withCredentials = true
           try {
             let apiData = res.data
             console.log(apiData)

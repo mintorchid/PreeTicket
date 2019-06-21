@@ -85,8 +85,7 @@
 </template>
 
 <script>
-    import $ from 'jquery'
-    import Vue from 'vue'
+  import Cookies from "js-cookie"
     export default {
         name: "Activity",
         props: {
@@ -105,6 +104,7 @@
         },
         data(){
             return{
+                user_id:Cookies.get('userid'),
                 act_dialog: false,
                 seat_dialog: false,
                 act_info_form:{

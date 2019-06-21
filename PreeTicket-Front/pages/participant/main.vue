@@ -1,7 +1,12 @@
 <template>
   <div style="width: 100%;background-color: #F1F1F1">
-    <div style="width: 100%;height: 70px;margin-bottom: 20px;border-bottom: #606266 2px solid">
-
+    <div style="width: 100%;height: 65px;margin-bottom: 20px;background: #409eff;border-radius: 0 0 10px 10px;position: fixed;z-index: 99">
+      <p style="color: #ffffff;font-size: 20px;padding: 20px 0 0 20px">Welcome, {{nickname}}</p>
+      <div style="position:absolute;right: 20px;top:10px">
+        <el-button style="width:42px;height:42px;background: rgba(255,255,255,0);border:#ffffff 1px solid;border-radius:20px;color: white" @click="ToTop"><i class="el-icon-arrow-up" style="font-size: 20px;margin-left: -9px;line-height: 12px"></i></el-button>
+      </div>
+    </div>
+    <div style="width: 100%;height: 65px;margin-bottom: 20px;background: #409eff;border-radius: 0 0 10px 10px;">
     </div>
     <div id="organizer-main">
       <div style="width: 100%">
@@ -18,6 +23,7 @@
 
 <script>
     import Activity from '~/components/participant/Activity.vue'
+    import Cookies from "js-cookie"
     export default {
         name: "main.vue",
         components:{
@@ -25,6 +31,7 @@
         },
         data(){
             return {
+              nickname:Cookies.get('nickname'),
                 activeIndex: 1,
                 activities_ready: [
                   {id: 0, status: false,name: "test",place:"here",time_start:"2019-8-8 17:33",time_signup:"2019-8-8 17:33",capacity:12,seat_row:9,seat_col:13,seats:[[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],[{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},{stat: 0},],],
@@ -49,7 +56,12 @@
                   },
                 ],
             }
-        }
+        },
+      methods:{
+          ToTop(){
+            location.href='#';
+          }
+      }
     }
 </script>
 

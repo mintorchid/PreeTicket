@@ -47,10 +47,12 @@
 </template>
 
 <script>
+  import Cookies from "js-cookie"
     export default {
         name: "createActivity",
         data(){
             return{
+              user_id:Cookies.get('userid'),
                 act_dialog: false,
                 act_info_form:{
                     id: null,
