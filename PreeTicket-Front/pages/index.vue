@@ -30,6 +30,9 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo,
+  },
+  mounted() {
+    this.$router.push({path: `/main`});
   }
 }
 </script>
