@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.edu.bjtu.preeticket.model.Ticket;
@@ -19,7 +18,7 @@ public class TicketController {
     @RequestMapping(value = "/chooseSeat", method = RequestMethod.POST)
     public String chooseSeat(Ticket ticket) {
         int success = 0;
-        //success = ticketService
+        success = ticketService.chooseSeat(ticket);
         return JSON.toJSONString(success);
     }
 }
