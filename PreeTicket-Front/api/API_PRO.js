@@ -1,9 +1,10 @@
 export default {
   baseURL: 'http://localhost:8080/',
+  method:'post',
 
   userLoginApi:     { url: '/login'},
   userRegisterApi:  { url: '/register'},
-  userInfoApi:      { url: '/index'},
+  //userInfoApi:      { url: '/index'},
 
   organizerActList: { url: '/activityByCreator'},
 

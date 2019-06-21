@@ -81,9 +81,6 @@
                             <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===2?'#ff3333':'#999999'}"></i>
                         </div>
                     </div>
-                  <div class="div_seat_col" v-on:click="changeSeatTest()">
-                    <i class="el-icon-user" :style="{color:testttt===2?'#ff3333':'#999999'}"></i>
-                  </div>
                 </div>
             </div>
         </el-dialog>
@@ -120,6 +117,7 @@
 
 <script>
     import $ from 'jquery'
+    import Cookies from "js-cookie"
     export default {
         name: "Activity",
         props: {
@@ -139,6 +137,7 @@
         },
         data(){
             return{
+              user_id:Cookies.get('userid'),
                 act_dialog: false,
                 seat_dialog:false,
                 notice_dialog:false,

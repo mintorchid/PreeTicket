@@ -9,7 +9,7 @@
 <script>
   import Login from '~/components/Login.vue'
     export default {
-      name: "main",
+      name: "mainpage",
       components: {
         Login
       },
