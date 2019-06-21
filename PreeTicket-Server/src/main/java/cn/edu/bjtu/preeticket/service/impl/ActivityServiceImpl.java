@@ -20,7 +20,7 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public List<Activity> getActivities(int id) {
-        return activityMapper.getActivities(id);
+        return activityMapper.getActivitiesById(id);
     }
 
     @Override
