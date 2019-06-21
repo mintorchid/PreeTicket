@@ -86,6 +86,7 @@
 
 <script>
   import Cookies from "js-cookie"
+  import API from "~/api";
     export default {
         name: "Activity",
         props: {
@@ -130,8 +131,13 @@
                 console.log("wedawdawd");
             },
             signUpAct(){
-                //yaozuo
+              API.participantJoinAct({
+                act_id: this.act_info_form.id,
+                user_id: this.user_id
+              }).then(res=>{
+                // todo
                 this.seat_dialog = true;
+              });
             },
             chooseSeat(m,n){
               if(this.seats[m-1][n-1].stat===0){
@@ -143,7 +149,23 @@
                 this.seat_choose.number = m*n;
                 this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat', -1);
               }
-            }
+            },
+          getSeatMap(){
+            API.participantGetSeatMap({
+              act_id: this.act_info_form.id,
+            }).then(res=>{
+              // todo
+            });
+          },
+          confirmSeat(){
+              API.participantChooseSeat({
+                act_id: this.act_info_form.id,
+                user_id:this.user_id,
+                seat: this.seat_choose.number,
+              }).then(res=>{
+                // todo
+              })
+          }
         }
     }
 </script>
