@@ -56,6 +56,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String register(JSONObject registerInfo) {
         JSONObject result = new JSONObject();
+        String username = registerInfo.getString("username");
+        if (userMapper.getNormalUser(username) != null) {
+            result.put("code", 200);
+            result.put("msg", "用户已存在，注册失败。");
+            return result.toJSONString();
+        }
         UserNormal userNormal = JSON.toJavaObject(registerInfo, UserNormal.class);
         userMapper.addNormalUser(userNormal);
         result.put("code", 200);
@@ -68,11 +74,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getUserByUsername(String username) {
         JSONObject result = new JSONObject();
-        UserNormal userNormal = userMapper.getNormalUser(username);
-        String data = JSON.toJSONString(userNormal);
-        result.put("code", "200");
-        result.put("msg", "组织者用户登录成功");
-        result.put("data", data);
+
+        if (userMapper.getNormalUser(username) != null) {
+            UserNormal userNormal = userMapper.getNormalUser(username);
+            String data = JSON.toJSONString(userNormal);
+            result.put("code", "200");
+            result.put("msg", "获取用户信息成功");
+            result.put("data", data);
+            return result.toJSONString();
+        }
+        result.put("code", "400");
+        result.put("msg", "用户不存在，获取用户信息失败");
         return result.toJSONString();
     }
 }
