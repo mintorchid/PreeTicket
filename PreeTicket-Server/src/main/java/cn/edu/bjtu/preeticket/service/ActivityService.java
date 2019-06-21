@@ -7,6 +7,7 @@ import java.util.List;
 public interface ActivityService {
     List<Activity> getActivities();
     List<Activity> getActivities(int id);
+    Activity getActivity(int id);
 
     int addActivity(Activity activity);
     int updateActivity(Activity activity);
