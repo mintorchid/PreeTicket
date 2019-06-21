@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-item" v-on:click=showAct()>
+  <div class="activity-item-add" v-on:click=showAct()>
     <div class="activity-title">
       <div id="create-activity-div">
         <p>+</p>
@@ -83,7 +83,7 @@
   #create-activity-div>p{
     font-size: 35px;
   }
-  .activity-item{
+  .activity-item-add{
     width: 60%;
     border: #79bbff 1px solid;
     border-radius: 6px;

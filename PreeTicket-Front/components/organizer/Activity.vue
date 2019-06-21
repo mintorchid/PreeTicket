@@ -78,9 +78,12 @@
                 <div class="div_seat_map" style="padding: 30px;">
                     <div class="div_seat_row" style="font-size: 30px;display: flex" v-for="m in seat_row" :key="m">
                         <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="changeSeatStat(m,n)">
-                            <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)]===2?'#ff3333':'#999999'}"></i>
+                            <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===2?'#ff3333':'#999999'}"></i>
                         </div>
                     </div>
+                  <div class="div_seat_col" v-on:click="changeSeatTest()">
+                    <i class="el-icon-user" :style="{color:testttt===2?'#ff3333':'#999999'}"></i>
+                  </div>
                 </div>
             </div>
         </el-dialog>
@@ -132,6 +135,7 @@
             seat_row:Number,
             seat_col:Number,
             seats:Array,
+            index:Number,
         },
         data(){
             return{
@@ -153,6 +157,7 @@
                     seats: this.seats,
                 },
                 act_new_notice: "",
+              testttt:0,
             }
         },
         methods:{
@@ -166,18 +171,17 @@
                 // yaozuo
             },
             changeSeatStat(m,n){
-                if(this.seats[m-1][n-1] === 2){
-                    this.seats[m-1][n-1] = 0;
-                    $(".div_seat_row:eq("+ (m-1) + ")>.div_seat_col:eq("+ (n-1) +")>i").css("color","#999999");
+                if(this.seats[m-1][n-1].stat===2){
+                    this.$set(this.seats[m-1][n-1], 'stat', 0);
                 }else {
-                    this.seats[m-1][n-1] = 2;
-                    $(".div_seat_row:eq("+ (m-1) + ")>.div_seat_col:eq("+ (n-1) +")>i").css("color","#ff3333");
+                    this.$set(this.seats[m-1][n-1], 'stat', 2);
                 }
-                console.log(m,n);
             },
             submitSeats(){
                 // yaozuo
-            }
+            },
+          changeSeatTest(){
+          },
         }
     }
 </script>

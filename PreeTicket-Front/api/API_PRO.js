@@ -1,5 +1,18 @@
 export default {
   baseURL: 'http://localhost:8080/',
 
-  citySearchApi:        { url: '/api/place/city/search'},
+  userLoginApi:     { url: '/login'},
+  userRegisterApi:  { url: '/register'},
+  userInfoApi:      { url: '/index'},
+
+  organizerActList: { url: ''},
+  organizerAddAct:  { url: ''},
+  organizerModifyAct: { url: ''},
+  organizerCloseAct:  { url: ''},
+  organizerAddNotice:  { url: ''},
+
+  participantActList:  { url: ''},
+  participantJoinAct:  { url: ''},
+  participantGetSeatMap:  { url: ''},
+  participantChooseSeat:  { url: ''},
 }

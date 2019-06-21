@@ -74,7 +74,7 @@
                     <div class="div_seat_map" style="padding: 30px;">
                         <div class="div_seat_row" style="font-size: 30px;display: flex" v-for="m in seat_row" :key="m">
                             <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="chooseSeat(m,n)">
-                                <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)]===2?'#fdfdfe':seats[(m-1)][(n-1)]===0?'#cccccc':'#33ee33'}"></i>
+                                <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===-1?'#7070ff':seats[(m-1)][(n-1)].stat===2?'#fdfdfe':seats[(m-1)][(n-1)].stat===0?'#cccccc':'#33ee33'}"></i>
                             </div>
                         </div>
                     </div>
@@ -134,14 +134,15 @@
                 this.seat_dialog = true;
             },
             chooseSeat(m,n){
-                if(this.seat_choose.number != 0){
-                    console.log(this.seat_choose);
-                    $(".div_seat_row:eq("+ (this.seat_choose.row-1) + ")>.div_seat_col:eq("+ (this.seat_choose.col-1) +")>i").css("color","#cccccc");
+              if(this.seats[m-1][n-1].stat===0){
+                if(this.seat_choose.number !== 0){
+                  this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat', 0);
                 }
                 this.seat_choose.row = m;
                 this.seat_choose.col = n;
                 this.seat_choose.number = m*n;
-                $(".div_seat_row:eq("+ (m-1) + ")>.div_seat_col:eq("+ (n-1) +")>i").css("color","#7070ff");
+                this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat', -1);
+              }
             }
         }
     }
