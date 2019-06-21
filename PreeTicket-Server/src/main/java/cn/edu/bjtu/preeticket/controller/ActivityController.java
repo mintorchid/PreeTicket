@@ -67,6 +67,11 @@ public class ActivityController {
         return activityService.updateActivity(activity);
     }
 
+    @RequestMapping(value = "/joinActivity", method = RequestMethod.GET)
+    public int joinActivity() {
+        return 1;
+    }
+
     @RequestMapping(value = "/getSeat", method = RequestMethod.GET)
     public String getSeat(@RequestParam("actID") int id) {
         Activity act = activityService.getActivity(id);
