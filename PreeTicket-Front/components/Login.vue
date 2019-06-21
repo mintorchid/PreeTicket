@@ -14,7 +14,7 @@
             </el-form-item>
           </el-form>
           <div style="float: right;margin-right: 20px">
-            <el-button type="info" plain>注册</el-button>
+            <el-button type="info" @click="userLogin" plain>注册</el-button>
             <el-button type="primary">登录</el-button>
           </div>
         </el-main>

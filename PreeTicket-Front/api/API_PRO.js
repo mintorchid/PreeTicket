@@ -5,13 +5,15 @@ export default {
   userRegisterApi:  { url: '/register'},
   userInfoApi:      { url: '/index'},
 
-  organizerActList: { url: ''},
-  organizerAddAct:  { url: ''},
-  organizerModifyAct: { url: ''},
-  organizerCloseAct:  { url: ''},
-  organizerAddNotice:  { url: ''},
+  organizerActList: { url: '/activityByCreator'},
 
-  participantActList:  { url: ''},
+  organizerAddAct:  { url: '/addActivity'},
+  organizerModifyAct: { url: '/updateActivity'},
+  // organizerModifyActSeats: { url: ''},
+  organizerCloseAct:  { url: '/closeActivity'},
+  organizerAddNotice:  { url: '/addNotice'},
+
+  participantActList:  { url: '/activity'},
   participantJoinAct:  { url: ''},
   participantGetSeatMap:  { url: ''},
   participantChooseSeat:  { url: ''},
