@@ -24,6 +24,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public Activity getActivity(int id) {
+        return activityMapper.getActivity(id);
+    }
+
+    @Override
     public int addActivity(Activity activity) {
         activityMapper.addActivity(activity);
         return 1;
