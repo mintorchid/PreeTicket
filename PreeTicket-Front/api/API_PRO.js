@@ -1,3 +1,5 @@
 export default {
-  baseURL: 'http://59.64.3.21:8000/',
+  baseURL: 'http://localhost:8080/',
+
+  citySearchApi:        { url: '/api/place/city/search',
 }
