@@ -106,14 +106,14 @@
             API.userLoginApi(data).then(res=>{
               if(res.data.type == 1){
                 this.$router.push({path: `/participant/main`});
-                Cookies.set('userid', res.id);
-                Cookies.set('username', res.username);
-                Cookies.set('nickname', res.nickname);
+                Cookies.set('userid', res.data.id);
+                Cookies.set('username', res.data.username);
+                Cookies.set('nickname', res.data.nickname);
               }else if(res.data.type == 2){
                 this.$router.push({path: `/organizer/main`});
-                Cookies.set('userid', res.id);
-                Cookies.set('username', res.username);
-                Cookies.set('nickname', res.organize);
+                Cookies.set('userid', res.data.id);
+                Cookies.set('username', res.data.username);
+                Cookies.set('nickname', res.data.organize);
               }else{
                 this.$message.error('登陆失败，请检查你的用户名和密码');
               }
