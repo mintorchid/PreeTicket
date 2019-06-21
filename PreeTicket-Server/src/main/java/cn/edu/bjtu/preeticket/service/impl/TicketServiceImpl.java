@@ -4,6 +4,8 @@ import cn.edu.bjtu.preeticket.mapper.TicketMapper;
 import cn.edu.bjtu.preeticket.model.Ticket;
 import cn.edu.bjtu.preeticket.service.TicketService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,16 @@ public class TicketServiceImpl implements TicketService {
             seat_map = strBuilder.toString();
             ticketMapper.setSeatMap(seat_map, ticket);
             return 1;
+        }
+    }
+
+    @Override
+    public int getTicket(int actid, int userid) {
+        List<Integer> list = ticketMapper.getTicket(actid, userid);
+        if (list.size() == 1) {
+            return list.get(0).intValue();
+        } else {
+            return -1;
         }
     }
 }
