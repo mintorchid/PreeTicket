@@ -48,11 +48,12 @@
           userLogin(){
             let data = this.login_form;
             API.userLoginApi(data).then(res=>{
-              if(res.type === 1){
+              if(res == 1){
                 this.$router.push({path: `/participant/main`});
-              }else if(res.type === 2){
+              }else if(res == 2){
                 this.$router.push({path: `/organizer/main`});
               }else{
+
                 this.$message.error('登陆失败，请检查你的用户名和密码');
               }
             });
