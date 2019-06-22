@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
@@ -34,10 +35,12 @@ public class ActivityController {
         }
         List<Res> res = new ArrayList<Res>();
         List<Activity> acs = activityService.getActivities();
+        Collections.reverse(acs);
         for (int i = 0; i < acs.size(); i++) {
             Res r = new Res();
             r.a = acs.get(i);
             r.n = noticeService.getNotices(acs.get(i).getId_activity());
+            Collections.reverse(r.n);
             res.add(r);
         }
 
@@ -59,10 +62,12 @@ public class ActivityController {
         }
         List<Res> res = new ArrayList<Res>();
         List<Activity> acs = activityService.getActivities(id);
+        Collections.reverse(acs);
         for (int i = 0; i < acs.size(); i++) {
             Res r = new Res();
             r.a = acs.get(i);
             r.n = noticeService.getNotices(acs.get(i).getId_activity());
+            Collections.reverse(r.n);
             res.add(r);
         }
 
