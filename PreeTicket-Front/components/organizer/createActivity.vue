@@ -21,10 +21,12 @@
                   <el-input v-model="act_info_form.place"></el-input>
               </el-form-item>
               <el-form-item label="活动报名时间" prop="time_signup">
-                  <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_signup"></el-date-picker>
+                  <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_signup" format="yyyy-MM-dd  HH:mm:ss"
+                                  value-format="yyyy-MM-dd HH:mm:ss" style="width: 300px"></el-date-picker>
               </el-form-item>
               <el-form-item label="活动开始时间" prop="time_start">
-                  <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_start"></el-date-picker>
+                  <el-date-picker type="datetime" placeholder="" v-model="act_info_form.time_start" format="yyyy-MM-dd  HH:mm:ss"
+      value-format="yyyy-MM-dd HH:mm:ss" style="width: 300px"></el-date-picker>
               </el-form-item>
               <el-form-item label="活动最大人数" prop="capacity">
                   <el-input type="number" v-model="act_info_form.capacity"></el-input>
@@ -77,13 +79,31 @@
                 this.act_dialog=true;
             },
             createAct(){
-              API.organizerAddAct({
-                id:this.user_id,
-                act:this.act_info_form,
-              }).then(res=>{
-                // todo
+              let data = {
+                id_organizer:this.user_id,
+                status:1,
+                seat_selectable:1,
+                capacity: this.act_info_form.capacity,
+                seat_row: this.act_info_form.seat_row,
+                seat_col: this.act_info_form.seat_col,
+                name:this.act_info_form.name,
+                place:this.act_info_form.place,
+                time_signup: this.act_info_form.time_signup,
+                time_start: this.act_info_form.time_start,
+                detail: this.act_info_form.detail,
+              };
+              let seatmap="";
+              for(let i = 0;i<this.act_info_form.seat_row;i++){
+                for(let j = 0;j<this.act_info_form.seat_col;j++){
+                  seatmap += "0";
+                }
+              }
+              data.seat_map = seatmap;
+              API.organizerAddAct(data).then(res=>{
+
                 this.act_dialog = false
               });
+              location.reload();
             },
         }
     }
