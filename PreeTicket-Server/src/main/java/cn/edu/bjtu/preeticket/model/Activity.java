@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Activity implements Serializable {
     private int id_activity;
     private int id_organizer;
+    private int status;
     private int capacity;
     private int seat_selectable;
     private int seat_row;
@@ -30,6 +31,14 @@ public class Activity implements Serializable {
 
     public void setId_organizer(int id_organizer) {
         this.id_organizer = id_organizer;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getCapacity() {
@@ -117,6 +126,7 @@ public class Activity implements Serializable {
         return "Activity{" +
                 "id_activity=" + id_activity +
                 ", id_organizer=" + id_organizer +
+                ", status=" + status +
                 ", capacity=" + capacity +
                 ", seat_selectable=" + seat_selectable +
                 ", seat_row=" + seat_row +

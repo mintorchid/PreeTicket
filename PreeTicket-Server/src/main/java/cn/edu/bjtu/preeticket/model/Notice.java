@@ -6,7 +6,7 @@ public class Notice implements Serializable {
     private int id_notice;
     private int id_activity;
     private String time_publish;
-    private String notice_detail;
+    private String detail;
 
     public int getId_notice() {
         return id_notice;
@@ -32,12 +32,12 @@ public class Notice implements Serializable {
         this.time_publish = time_publish;
     }
 
-    public String getNotice_detail() {
-        return notice_detail;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setNotice_detail(String notice_detail) {
-        this.notice_detail = notice_detail;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Notice implements Serializable {
                 "id_notice=" + id_notice +
                 ", id_activity=" + id_activity +
                 ", time_publish='" + time_publish + '\'' +
-                ", notice_detail='" + notice_detail + '\'' +
+                ", detail='" + detail + '\'' +
                 '}';
     }
 }
