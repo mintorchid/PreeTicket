@@ -24,7 +24,7 @@
     <el-dialog
       :visible.sync="reg_dialog"
       title="注册"
-      fullscreen="true"
+      :fullscreen="true"
       append-to-body
       center>
       <div style="padding: 10px 20px">
@@ -106,7 +106,7 @@
             API.userLoginApi(data).then(res=>{
               if(res.data.type == 1){
                 this.$router.push({path: `/participant/main`});
-                Cookies.set('userid', res.data.id);
+                Cookies.set('userid', res.data.id_normal);
                 Cookies.set('username', res.data.username);
                 Cookies.set('nickname', res.data.nickname);
               }else if(res.data.type == 2){
