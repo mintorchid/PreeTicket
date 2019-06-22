@@ -7,5 +7,5 @@ import cn.edu.bjtu.preeticket.model.Notice;
 public interface NoticeService {
     List<Notice> getNotices(int acid);
 
-    int addNotice(Notice notice);
+    void addNotice(Notice notice);
 }

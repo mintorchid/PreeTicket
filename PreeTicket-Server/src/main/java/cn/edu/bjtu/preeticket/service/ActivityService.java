@@ -9,6 +9,6 @@ public interface ActivityService {
     List<Activity> getActivities(int id);
     Activity getActivity(int id);
 
-    int addActivity(Activity activity);
-    int updateActivity(Activity activity);
+    void addActivity(Activity activity);
+    void updateActivity(Activity activity);
 }
