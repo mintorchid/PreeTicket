@@ -5,7 +5,7 @@
         </a>
         <div class="items_txt">
             <div class="activity-title">
-                <h1>{{ name }}</h1>
+                <h1 :style="{color:status?'#303133':'#707173'}">{{ name }}{{status===1?"":"（已关闭）"}}</h1>
             </div>
             <div class="activity-title-line"></div>
             <div class="activity-title-line2"></div>
@@ -54,30 +54,58 @@
             </el-form>
 
 
-            <el-dialog
-                    :visible.sync="seat_dialog"
-                    :fullscreen="true"
-                    append-to-body
-                    center>
-                <div style="">
-                    <el-form label-width="100px" ref="act_info_form" :model="act_info_form">
-                    </el-form>
-                    <div style="float: right;padding-right: 30px;">
-                        <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #33ee33"></i></span>：座位被占用</p>
-                        <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #999999"></i></span>：座位可用</p>
-                    </div>
-                    <div style="padding: 30px;font-size: 17px">
-                    </div>
-                    <div class="div_seat_map" style="padding: 30px;">
-                        <div class="div_seat_row" style="font-size: 30px;display: flex" v-for="m in seat_row" :key="m">
-                            <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="chooseSeat(m,n)">
-                                <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===-1?'#7070ff':seats[(m-1)][(n-1)].stat===2?'#fdfdfe':seats[(m-1)][(n-1)].stat===0?'#cccccc':'#33ee33'}"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </el-dialog>
         </el-dialog>
+      <el-dialog
+        :visible.sync="seat_dialog"
+        :fullscreen="true"
+        append-to-body
+        center>
+        <div style="">
+          <div v-if="!ticket"  style="padding: 20px 0">
+            <el-button type="info" @click="getSeatMap" style="width: 100%;height:45px" plain>刷新</el-button>
+          </div>
+          <div style="float: right;padding-right: 30px;">
+            <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #33ee33"></i></span>：座位被占用</p>
+            <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #999999"></i></span>：座位可用</p>
+          </div>
+          <div style="padding: 30px;font-size: 17px">
+          </div>
+          <div class="div_seat_map" style="padding: 30px;text-align: center">
+            <div class="div_seat_row" style="width:100%;font-size: 35px;display: flex;align-items: center; justify-content: space-between;" v-for="m in seat_row" :key="m">
+              <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="chooseSeat(m,n)">
+                <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===-1?'#7070ff':seats[(m-1)][(n-1)].stat===2?'#fdfdfe':seats[(m-1)][(n-1)].stat===0?'#cccccc':'#33ee33'}"></i>
+              </div>
+            </div>
+            <div v-if="!ticket" style="margin-top: 30px">
+              <el-button type="primary" @click="confirmSeat" style="width: 60%">确认</el-button>
+            </div>
+          </div>
+        </div>
+      </el-dialog>
+      <el-dialog
+        :visible.sync="seat_dialog2"
+        :fullscreen="true"
+        append-to-body
+        center>
+        <div style="">
+          <div style="float: right;padding-right: 30px;">
+            <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #33ee33"></i></span>：座位被占用</p>
+            <p> <span  style="font-size: 20px;"><i class="el-icon-user" style="color: #999999"></i></span>：座位可用</p>
+          </div>
+          <div style="padding: 30px;font-size: 17px">
+          </div>
+          <div class="div_seat_map" style="padding: 30px;text-align: center">
+            <div class="div_seat_row" style="width:100%;font-size: 35px;display: flex;align-items: center; justify-content: space-between;" v-for="m in seat_row" :key="m">
+              <div class="div_seat_col" v-for="n in seat_col" :key="n" v-on:click="chooseSeat(m,n)">
+                <i class="el-icon-user" :style="{color: seats[(m-1)][(n-1)].stat===-1?'#7070ff':seats[(m-1)][(n-1)].stat===2?'#fdfdfe':seats[(m-1)][(n-1)].stat===0?'#cccccc':'#33ee33'}"></i>
+              </div>
+            </div>
+            <div  style="margin-top: 30px">
+              <p>您的座位在：第{{seat_choose.row}}排 第{{seat_choose.col}}列 {{seat_choose.number}}号</p>
+            </div>
+          </div>
+        </div>
+      </el-dialog>
     </div>
 </template>
 
@@ -104,7 +132,8 @@
             return{
                 user_id:Cookies.get('userid'),
                 act_dialog: false,
-                seat_dialog: false,
+              seat_dialog: false,
+              seat_dialog2: false,
                 act_info_form:{
                     id: this.id,
                     status: this.status,
@@ -120,46 +149,68 @@
                     seats: this.seats,
                 },
                 seat_choose:{row:0, col:0, number:0},
+                ticket:false,
             }
         },
         methods:{
             showActDialog(){
-                this.act_dialog = true;
+              if(this.status===0){return}
+              API.participantGetTicket({
+                actID: this.act_info_form.id,
+                userID: this.user_id
+              }).then(res=>{
+                if(res.code===200){
+                  console.log(res.data%this.seat_col+1);
+                  this.$set(this.seat_choose, 'number', res.data);
+                  this.$set(this.seat_choose, 'row', parseInt(res.data/this.seat_col)+1);
+                  this.$set(this.seat_choose, 'col', res.data%this.seat_col);
+                  this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat',-1);
+                  this.ticket=true;
+                  this.seat_dialog2 = true;
+                }else{
+                  this.act_dialog = true;
+                }
+              });
             },
             signUpAct(){
               API.participantJoinAct({
-                act_id: this.act_info_form.id,
-                user_id: this.user_id
+                id_act: this.act_info_form.id,
+                id_user: this.user_id
               }).then(res=>{
-                // todo
                 this.seat_dialog = true;
               });
             },
             chooseSeat(m,n){
+              if(this.ticket===true){return}
               if(this.seats[m-1][n-1].stat===0){
                 if(this.seat_choose.number !== 0){
                   this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat', 0);
                 }
                 this.seat_choose.row = m;
                 this.seat_choose.col = n;
-                this.seat_choose.number = m*n;
+                this.seat_choose.number = (m-1) * this.seat_col+n;
                 this.$set(this.seats[this.seat_choose.row-1][this.seat_choose.col-1], 'stat', -1);
               }
             },
           getSeatMap(){
             API.participantGetSeatMap({
-              act_id: this.act_info_form.id,
+              id_act: this.act_info_form.id,
             }).then(res=>{
-              // todo
+              for(let i=0;i<this.seat_row;i++){
+                for(let j=0;j<this.seat_col;j++){
+                  this.$set(this.seats[i][j], 'stat', Number(res.data.seat_map[i*this.seat_row+j]));
+                }
+              }
             });
           },
           confirmSeat(){
               API.participantChooseSeat({
-                act_id: this.act_info_form.id,
-                user_id:this.user_id,
+                id_activity: this.act_info_form.id,
+                id_user:this.user_id,
                 seat: this.seat_choose.number,
               }).then(res=>{
-                // todo
+                this.$message.success("操作成功");
+                location.reload();
               })
           }
         }

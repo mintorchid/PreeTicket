@@ -15,7 +15,8 @@ export default {
   organizerAddNotice:  { url: '/addNotice'},
 
   participantActList:  { url: '/activity'},
-  participantJoinAct:  { url: ''},
-  participantGetSeatMap:  { url: ''},
-  participantChooseSeat:  { url: ''},
+  participantJoinAct:  { url: '/joinActivity'},
+  participantGetSeatMap:  { url: '/getSeat'},
+  participantChooseSeat:  { url: '/chooseSeat'},
+  participantGetTicket:  { url: '/getTicket'},
 }

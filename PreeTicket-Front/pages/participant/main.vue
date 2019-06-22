@@ -70,8 +70,7 @@
           },
         loadActList(){
           API.participantActList({}).then(res=>{
-            // todo
-            let i,j,k;
+            let i,j,k,l;
             for(i=0;i<res.data.length;i++){
               let temp= {
                 id: res.data[i].a.id_activity,
@@ -92,7 +91,8 @@
               for (j=0;j<res.data[i].a.seat_row;j++){
                 temp_seat_row = [];
                 for (k=0;k<res.data[i].a.seat_col;k++){
-                  temp_seat_row.push({stat: 0}); // todo
+                  l=j*res.data[i].a.seat_col+k;
+                  temp_seat_row.push({stat: Number(res.data[i].a.seat_map[l])});
                 }
                 temp_seat.push(temp_seat_row);
               }

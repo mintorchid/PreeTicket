@@ -15,11 +15,11 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public int chooseSeat(Ticket ticket) {
         String seat_map  = ticketMapper.getSeatMap(ticket);
-        if (seat_map.charAt(ticket.getSeat()) == '1') {
+        if (seat_map.charAt(ticket.getSeat()-1) == '1') {
             return 0;
         } else {
             StringBuilder strBuilder = new StringBuilder(seat_map);
-            strBuilder.setCharAt(ticket.getSeat(), '1');
+            strBuilder.setCharAt(ticket.getSeat()-1, '1');
             seat_map = strBuilder.toString();
             ticketMapper.setSeatMap(seat_map, ticket.getId_activity());
             ticketMapper.addTicket(ticket);

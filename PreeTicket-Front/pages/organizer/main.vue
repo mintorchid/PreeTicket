@@ -84,7 +84,6 @@
           API.organizerActList({
             id_organizer:this.user_id
           }).then(res=>{
-            // todo
             let i,j,k,l;
             for(i=0;i<res.data.length;i++){
               let temp= {
