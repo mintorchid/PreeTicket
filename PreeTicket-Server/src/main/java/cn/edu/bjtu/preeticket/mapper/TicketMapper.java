@@ -1,5 +1,6 @@
 package cn.edu.bjtu.preeticket.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -15,6 +16,9 @@ public interface TicketMapper {
 
     @Update("update activity set seat_map=#{seat_map} where id_activity=#{id_activity}")
     void setSeatMap(@Param("seat_map") String seat_map, @Param("id_activity") int id_activity);
+
+    @Insert("insert into ticket(id_activity, id_user, seat) values (#{id_activity}, #{id_user}, #{seat})")
+    void addTicket(Ticket ticket);
 
     @Select({"select seat from ticket where id_activity=#{id_activity} and id_user=#{id_user}"})
     Integer getTicket(@Param("id_activity") int id_activity, @Param("id_user") int id_user);
