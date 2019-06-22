@@ -29,14 +29,14 @@ public class ActivityController {
     public String getActivities(){
         class Res {
             public Activity a;
-            public Notice n[];
+            public List<Notice> n;
         }
         List<Res> res = new ArrayList<Res>();
         List<Activity> acs = activityService.getActivities();
         for (int i = 0; i < acs.size(); i++) {
             Res r = new Res();
             r.a = acs.get(i);
-            noticeService.getNotices(acs.get(i).getId_activity()).toArray(r.n);
+            r.n = noticeService.getNotices(acs.get(i).getId_activity());
             res.add(r);
         }
 
@@ -54,14 +54,14 @@ public class ActivityController {
 
         class Res {
             public Activity a;
-            public Notice n[];
+            public List<Notice> n;
         }
         List<Res> res = new ArrayList<Res>();
         List<Activity> acs = activityService.getActivities(id);
         for (int i = 0; i < acs.size(); i++) {
             Res r = new Res();
             r.a = acs.get(i);
-            noticeService.getNotices(acs.get(i).getId_activity()).toArray(r.n);
+            r.n = noticeService.getNotices(acs.get(i).getId_activity());
             res.add(r);
         }
 
