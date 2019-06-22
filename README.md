@@ -4,5 +4,4 @@
 Vue
 
 ## 后端
-Spring Boot
-MySQL
+Spring Boot + MySQL
