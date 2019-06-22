@@ -29,14 +29,12 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public int addActivity(Activity activity) {
+    public void addActivity(Activity activity) {
         activityMapper.addActivity(activity);
-        return 1;
     }
 
     @Override
-    public int updateActivity(Activity activity) {
+    public void updateActivity(Activity activity) {
         activityMapper.updateActivity(activity);
-        return 1;
     }
 }
