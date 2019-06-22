@@ -40,9 +40,6 @@
                 <el-form-item label="活动地点:" prop="place">
                     <p>{{ act_info_form.place }}</p>
                 </el-form-item>
-                <el-form-item label="活动报名时间:" prop="time_signup">
-                    <p><i class="el-icon-time"></i> {{ act_info_form.time_signup }}</p>
-                </el-form-item>
                 <el-form-item label="活动开始时间:" prop="time_start">
                     <p><i class="el-icon-time"></i> {{ act_info_form.time_start }}</p>
                 </el-form-item>
