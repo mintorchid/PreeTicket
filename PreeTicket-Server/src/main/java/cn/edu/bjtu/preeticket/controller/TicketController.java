@@ -23,7 +23,7 @@ public class TicketController {
         return JSON.toJSONString(success);
     }
 
-    @RequestMapping(value = "/getTicket", method = RequestMethod.GET)
+    @RequestMapping(value = "/getTicket", method = RequestMethod.POST)
     public String getTicket(@RequestParam("actID") int actid, @RequestParam("userID") int userid) {
         int success = -1;
         success = ticketService.getTicket(actid, userid);
