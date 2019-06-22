@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity`  (
   `id_activity` int(11) NOT NULL AUTO_INCREMENT,
   `id_organizer` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `place` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `time_signup` datetime(0) NULL DEFAULT NULL,
@@ -42,7 +43,7 @@ CREATE TABLE `activity`  (
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
-INSERT INTO `activity` VALUES (1001, 2001, '演唱会', '天佑会堂', '2019-06-15 10:13:26', '2019-06-30 08:00:00', 100, 'no detail', 1, 100, 100, '00000000000000');
+INSERT INTO `activity` VALUES (1001, 2001, 1, '演唱会', '天佑会堂', '2019-06-15 10:13:26', '2019-06-30 08:00:00', 100, 'no detail', 1, 100, 100, '00000000000000');
 
 -- ----------------------------
 -- Table structure for notice

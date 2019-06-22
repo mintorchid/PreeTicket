@@ -11,4 +11,5 @@ public interface ActivityService {
 
     void addActivity(Activity activity);
     void updateActivity(Activity activity);
+    void closeActivity(int id_activity);
 }
