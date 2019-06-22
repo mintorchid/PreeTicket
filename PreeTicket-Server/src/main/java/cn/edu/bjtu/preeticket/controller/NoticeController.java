@@ -11,7 +11,7 @@ public class NoticeController {
     @Autowired
     private NoticeService noticeService;
 
-    @RequestMapping(value = "/addNotice", method = RequestMethod.POST)
+    @RequestMapping(value = "/addNotice", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int addNotice(Notice notice) {
         return noticeService.addNotice(notice);
     }
