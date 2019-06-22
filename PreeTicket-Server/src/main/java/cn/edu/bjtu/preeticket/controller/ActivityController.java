@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSONObject;
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
+    @Autowired
     private NoticeService noticeService;
 
     @RequestMapping(value = "/activity",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -40,11 +41,11 @@ public class ActivityController {
             res.add(r);
         }
 
-        JSONObject data = (JSONObject) JSON.toJSON(res);
+        //JSONObject data = (JSONObject) JSON.toJSON(res);
         JSONObject result = new JSONObject();
         result.put("code", 200);
         result.put("msg", "成功");
-        result.put("data", data);
+        result.put("data", res);
         return result.toJSONString();
     }
 
@@ -65,11 +66,11 @@ public class ActivityController {
             res.add(r);
         }
 
-        JSONObject data = (JSONObject) JSON.toJSON(res);
+//        JSONObject data = (JSONObject) JSON.toJSON(res);
         JSONObject result = new JSONObject();
         result.put("code", 200);
         result.put("msg", "成功");
-        result.put("data", data);
+        result.put("data", res);
         return result.toJSONString();
     }
 

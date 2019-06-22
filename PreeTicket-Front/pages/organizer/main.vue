@@ -43,6 +43,7 @@
       },
       data(){
           return {
+            user_id:Cookies.get('userid'),
             nickname:Cookies.get('nickname'),
             activeIndex: 1,
             activities_ready: [
@@ -67,6 +68,7 @@
                 notice:[{time:"2019-8-8 11:23", content:"qwedfgbnmuretfgrgerg"},{time:"2019-8-9 11:23", content:"qwedfgbnasdawrgerg"},{time:"2019-8-10 11:23", content:"qwedfgbnmuretfgrgerg"}],
               },
               ],
+
           }
       },
       mounted(){
@@ -78,9 +80,38 @@
         },
         loadActList(){
           API.organizerActList({
-            id:this.user_id
+            userID:this.user_id
           }).then(res=>{
             // todo
+            let i,j,k;
+            for(i=0;i<res.data.length;i++){
+              let temp= {
+                id: res.data[i].a.id_activity,
+                status: true,
+                name: res.data[i].a.name,
+                place: res.data[i].a.place,
+                time_start: res.data[i].a.time_start,
+                time_signup: res.data[i].a.time_signup,
+                capacity: res.data[i].a.capacity,
+                seat_row: res.data[i].a.seat_row,
+                seat_col: res.data[i].a.seat_col,
+                detail: res.data[i].a.detail,
+                notice: res.data[i].n,
+              };
+              let temp_seat_row, temp_seat;
+              temp_seat_row = [];
+              temp_seat = [];
+              for (j=0;j<res.data[i].a.seat_row;j++){
+                temp_seat_row = [];
+                for (k=0;k<res.data[i].a.seat_col;k++){
+                  temp_seat_row.push({stat: 0}); // todo
+                }
+                temp_seat.push(temp_seat_row);
+              }
+              temp.seats = temp_seat;
+              console.log(temp);
+              this.activities_ready.push(temp);
+            }
           });
         },
       }

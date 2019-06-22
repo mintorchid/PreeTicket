@@ -111,7 +111,7 @@
                 Cookies.set('nickname', res.data.nickname);
               }else if(res.data.type == 2){
                 this.$router.push({path: `/organizer/main`});
-                Cookies.set('userid', res.data.id);
+                Cookies.set('userid', res.data.id_organizer);
                 Cookies.set('username', res.data.username);
                 Cookies.set('nickname', res.data.organize);
               }else{

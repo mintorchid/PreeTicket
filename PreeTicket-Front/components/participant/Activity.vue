@@ -15,7 +15,7 @@
                 <p style="padding-top: 15px">最新通知：</p>
                 <div style="width: 100%;padding: 9px 0;background: #f3f3f3;border-top: #dddddd 1px solid">
                     <div style="float: left;width: 200px">
-                        <p>{{ notice[0].time }}</p>
+                        <p>{{ notice[0].time_publish }}</p>
                     </div>
                     <div style="margin-left: 200px">
                         <p>{{ notice[0].content }}</p>
@@ -128,7 +128,6 @@
         methods:{
             showActDialog(){
                 this.act_dialog = true;
-                console.log("wedawdawd");
             },
             signUpAct(){
               API.participantJoinAct({
