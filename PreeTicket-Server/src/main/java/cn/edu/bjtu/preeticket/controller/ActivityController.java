@@ -23,7 +23,7 @@ public class ActivityController {
     private ActivityService activityService;
     private NoticeService noticeService;
 
-    @RequestMapping(value = "/activity",method = RequestMethod.GET)
+    @RequestMapping(value = "/activity",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getActivities(){
         class Res {
             public Activity a;
@@ -40,7 +40,7 @@ public class ActivityController {
         return JSON.toJSONString(res);
     }
 
-    @RequestMapping(value = "/activityByCreator", method = RequestMethod.GET)
+    @RequestMapping(value = "/activityByCreator", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getActivities(@RequestParam("userID") int id) {
         class Res {
             public Activity a;
@@ -57,22 +57,22 @@ public class ActivityController {
         return JSON.toJSONString(res);
     }
 
-    @RequestMapping(value = "/addActivity", method = RequestMethod.POST)
+    @RequestMapping(value = "/addActivity", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int addActivity(Activity activity) {
         return activityService.addActivity(activity);
     }
 
-    @RequestMapping(value = "/updateActivity", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateActivity", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int updateActivity(Activity activity) {
         return activityService.updateActivity(activity);
     }
 
-    @RequestMapping(value = "/joinActivity", method = RequestMethod.GET)
+    @RequestMapping(value = "/joinActivity", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int joinActivity() {
         return 1;
     }
 
-    @RequestMapping(value = "/getSeat", method = RequestMethod.GET)
+    @RequestMapping(value = "/getSeat", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getSeat(@RequestParam("actID") int id) {
         Activity act = activityService.getActivity(id);
         Seat s = new Seat();

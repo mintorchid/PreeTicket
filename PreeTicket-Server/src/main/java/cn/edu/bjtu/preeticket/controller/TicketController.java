@@ -16,14 +16,14 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @RequestMapping(value = "/chooseSeat", method = RequestMethod.POST)
+    @RequestMapping(value = "/chooseSeat", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String chooseSeat(Ticket ticket) {
         int success = 0;
         success = ticketService.chooseSeat(ticket);
         return JSON.toJSONString(success);
     }
 
-    @RequestMapping(value = "/getTicket", method = RequestMethod.GET)
+    @RequestMapping(value = "/getTicket", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getTicket(@RequestParam("actID") int actid, @RequestParam("userID") int userid) {
         int success = -1;
         success = ticketService.getTicket(actid, userid);

@@ -10,7 +10,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
     public String getUserByUsername(@RequestParam("username") String username) {
         return userService.getUserByUsername(username);
     }
