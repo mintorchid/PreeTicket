@@ -14,7 +14,7 @@ public interface TicketMapper {
     String getSeatMap(Ticket ticket);
 
     @Update("update activity set seat_map=#{seat_map} where id_activity=#{id_activity}")
-    void setSeatMap(@Param("seat_map") String seat_map, Ticket ticket);
+    void setSeatMap(@Param("seat_map") String seat_map, @Param("id_activity") int id_activity);
 
     @Select({"select seat from ticket where id_activity=#{id_activity} and id_user=#{id_user}"})
     Integer getTicket(@Param("id_activity") int id_activity, @Param("id_user") int id_user);
