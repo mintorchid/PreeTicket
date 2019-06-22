@@ -44,7 +44,7 @@ public class TicketController {
         seat = ticketService.getTicket(actid, userid);
 
         JSONObject result = new JSONObject();
-        JSONObject data = (JSONObject) JSON.toJSON(seat);
+//        JSONObject data = (JSONObject) JSON.toJSON(seat);
         if (seat == -1) {
             result.put("code", 400);
             result.put("msg", "失败");
@@ -52,7 +52,7 @@ public class TicketController {
             result.put("code", 200);
             result.put("msg", "成功");
         }
-        result.put("data", data);
+        result.put("data", seat);
         return result.toJSONString();
     }
 }
