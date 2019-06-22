@@ -5,7 +5,7 @@
           </a>
           <div class="items_txt">
               <div class="activity-title">
-                  <h1>{{ name }}</h1>
+                  <h1 :style="{color:status?'#303133':'#707173'}">{{ name }}</h1>
               </div>
               <div class="activity-title-line"></div>
               <div class="activity-title-line2"></div>
@@ -19,11 +19,15 @@
               </div>
           </div>
           <div style="padding: 40px;text-align: right">
-            <div>
+            <div v-if="status===1">
               <el-button type="danger" @click="closeAct()" style="float: left">关闭活动</el-button>
               <el-button type="primary" @click="seat_dialog = true" plain>设置座位图</el-button>
               <el-button type="primary" @click="act_dialog = true" plain>修改活动信息</el-button>
               <el-button type="primary" @click="notice_dialog = true" plain>发布活动通知</el-button>
+            </div>
+            <div v-if="status===0">
+              <el-button type="primary" @click="seat_dialog = true" plain>设置座位图</el-button>
+              <el-button type="danger"  style="float: right" disabled>活动已被关闭</el-button>
             </div>
             <div>
             </div>
@@ -89,7 +93,7 @@
                           </div>
                       </div>
                   </div>
-                  <div style="position: relative;left: 20px;bottom: 20px">
+                  <div  v-if="status===1" style="position: relative;left: 20px;bottom: 20px">
                     <el-button type="primary" @click="submitSeats" plain>提交修改</el-button>
                   </div>
               </div>
@@ -132,7 +136,7 @@
           name: "Activity",
           props: {
               id: Number,
-              status: Boolean,
+              status: Number,
               name: String,
               place:String,
               time_signup: String,
@@ -213,6 +217,7 @@
                 });
               },
               changeSeatStat(m,n){
+                if(this.status===0){return}
                   if(this.seats[m-1][n-1].stat===2){
                       this.$set(this.seats[m-1][n-1], 'stat', 0);
                   }else {
@@ -249,7 +254,7 @@
               let data = {
                 id_activity: this.act_info_form.id,
                 id_organizer:this.user_id,
-                status:-1,
+                status:0,
                 seat_selectable:1,
                 capacity: this.act_info_form.capacity,
                 seat_row: this.act_info_form.seat_row,
@@ -269,6 +274,7 @@
               data.seat_map = seatmap;
               API.organizerModifyAct(data).then(res=>{
                 this.act_dialog=false;
+                location.reload();
               });
             },
           }

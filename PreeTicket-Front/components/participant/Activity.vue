@@ -88,7 +88,7 @@
         name: "Activity",
         props: {
             id: Number,
-            status: Boolean,
+            status: Number,
             name: String,
             place:String,
             time_signup: String,

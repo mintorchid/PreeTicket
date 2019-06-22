@@ -89,7 +89,7 @@
             for(i=0;i<res.data.length;i++){
               let temp= {
                 id: res.data[i].a.id_activity,
-                status: true,
+                status: res.data[i].a.status,
                 name: res.data[i].a.name,
                 place: res.data[i].a.place,
                 time_start: res.data[i].a.time_start,
