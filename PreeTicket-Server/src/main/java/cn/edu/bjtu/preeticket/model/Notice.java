@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Notice implements Serializable {
     private int id_notice;
-    private int id_activity;
+    private int id_act;
     private String time_publish;
     private String detail;
 
@@ -16,12 +16,12 @@ public class Notice implements Serializable {
         this.id_notice = id_notice;
     }
 
-    public int getId_activity() {
-        return id_activity;
+    public int getId_act() {
+        return id_act;
     }
 
-    public void setId_activity(int id_activity) {
-        this.id_activity = id_activity;
+    public void setId_act(int id_act) {
+        this.id_act = id_act;
     }
 
     public String getTime_publish() {
@@ -44,7 +44,7 @@ public class Notice implements Serializable {
     public String toString() {
         return "Notice{" +
                 "id_notice=" + id_notice +
-                ", id_activity=" + id_activity +
+                ", id_act=" + id_act +
                 ", time_publish='" + time_publish + '\'' +
                 ", detail='" + detail + '\'' +
                 '}';

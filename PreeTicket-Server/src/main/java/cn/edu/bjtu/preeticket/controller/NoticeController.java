@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.edu.bjtu.preeticket.model.Notice;
 import cn.edu.bjtu.preeticket.service.NoticeService;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class NoticeController {
     @Autowired
     private NoticeService noticeService;
