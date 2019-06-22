@@ -39,8 +39,12 @@ for (var api in APICONFIG) {
         axios(config).then((res) => {
           axios.defaults.withCredentials = true
           try {
-            let apiData = res.data
-            console.log(apiData)
+            console.log(res);
+            resolve(res.data);
+            /* by Bowen
+
+            let apiData = res.data;
+            console.log(apiData);
 
             // 异常响应
             if (apiData.code !== 0) {
@@ -56,6 +60,8 @@ for (var api in APICONFIG) {
             }
             resolve(apiData.data)
             console.log(apiData.data)
+
+             */
           } catch (err) {
           }
         }).catch(res => {
