@@ -22,6 +22,7 @@ public class TicketServiceImpl implements TicketService {
             strBuilder.setCharAt(ticket.getSeat(), '1');
             seat_map = strBuilder.toString();
             ticketMapper.setSeatMap(seat_map, ticket.getId_activity());
+            ticketMapper.addTicket(ticket);
             return 1;
         }
     }
