@@ -18,7 +18,7 @@
                         <p>{{ notice[0].time_publish }}</p>
                     </div>
                     <div style="margin-left: 200px">
-                        <p>{{ notice[0].content }}</p>
+                        <p>{{ notice[0].detail }}</p>
                     </div>
                 </div>
             </div>
